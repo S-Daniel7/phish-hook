@@ -1,0 +1,95 @@
+import React, { useState } from 'react';
+import { Shield, AlertCircle, BookOpen, Users } from 'lucide-react';
+
+export default function Homepage() {
+    const [email, setEmail] = useState('');
+
+    const handleNewsletterSignup = (e) => {
+        e.preventDefault();
+        // TODO: Connect to backend newsletter service
+        alert('Thanks for signing up!');
+        setEmail('');
+    };
+
+    return (
+        <div className="min-h-screen bg-gradient-to-b from-blue-900 to-blue-700 text-white">
+            {/* Navigation */}
+            <nav className="bg-blue-950 p-4 shadow-lg">
+                <div className="max-w-6xl mx-auto flex justify-between items-center">
+                    <div className="flex items-center gap-2 text-2xl font-bold">
+                        <Shield className="w-8 h-8" />
+                        PhishGuard
+                    </div>
+                    <div className="hidden md:flex gap-6">
+                        <a href="#about" className="hover:text-blue-300">About</a>
+                        <a href="#courses" className="hover:text-blue-300">Courses</a>
+                        <a href="#contact" className="hover:text-blue-300">Contact</a>
+                    </div>
+                </div>
+            </nav>
+
+            {/* Hero Section */}
+            <section className="max-w-6xl mx-auto px-4 py-20 text-center">
+                <h1 className="text-5xl font-bold mb-4">Stay Safe From Phishing Scams</h1>
+                <p className="text-xl text-blue-100 mb-8">
+                    Learn to identify and protect yourself from phishing attacks with our interactive courses
+                </p>
+                <button className="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-bold py-3 px-8 rounded-lg text-lg">
+                    Start Learning Now
+                </button>
+            </section>
+
+            {/* Features */}
+            <section id="about" className="bg-blue-800 py-16">
+                <div className="max-w-6xl mx-auto px-4">
+                    <h2 className="text-3xl font-bold text-center mb-12">Why PhishGuard?</h2>
+                    <div className="grid md:grid-cols-3 gap-8">
+                        <div className="bg-blue-700 p-6 rounded-lg">
+                            <AlertCircle className="w-12 h-12 mb-4" />
+                            <h3 className="text-xl font-bold mb-2">Spot Red Flags</h3>
+                            <p>Learn suspicious email patterns and warning signs</p>
+                        </div>
+                        <div className="bg-blue-700 p-6 rounded-lg">
+                            <BookOpen className="w-12 h-12 mb-4" />
+                            <h3 className="text-xl font-bold mb-2">Interactive Lessons</h3>
+                            <p>Engaging courses designed for all skill levels</p>
+                        </div>
+                        <div className="bg-blue-700 p-6 rounded-lg">
+                            <Users className="w-12 h-12 mb-4" />
+                            <h3 className="text-xl font-bold mb-2">Community</h3>
+                            <p>Join thousands learning cybersecurity awareness</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Newsletter */}
+            <section className="py-16">
+                <div className="max-w-2xl mx-auto px-4 text-center">
+                    <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
+                    <p className="text-blue-100 mb-6">Get weekly tips on phishing prevention</p>
+                    <form onSubmit={handleNewsletterSignup} className="flex gap-2">
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Enter your email"
+                            required
+                            className="flex-1 px-4 py-3 rounded text-blue-900"
+                        />
+                        <button type="submit" className="bg-yellow-500 hover:bg-yellow-600 px-6 py-3 rounded font-bold text-blue-900">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            {/* Footer */}
+            <footer className="bg-blue-950 py-8 border-t border-blue-800">
+                <div className="max-w-6xl mx-auto px-4 text-center text-blue-300">
+                    <p>&copy; 2024 PhishGuard. Protecting you from phishing threats.</p>
+                </div>
+            </footer>
+        </div>
+    );
+}
