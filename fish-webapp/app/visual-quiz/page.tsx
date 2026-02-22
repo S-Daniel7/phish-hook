@@ -224,11 +224,11 @@ if (showFinal) {
 
         </div>
 
-        <h1 className="mb-2 text-2xl font-bold text-sky-900 dark:text-sky-900">
+        <h1 className="mb-2 text-2xl font-bold text-sky-900 dark:text-sky-900 " style={{ fontFamily: "var(--font-ubuntu)" }}>
           {quiz.title || `Quiz Level ${quiz.level ?? level}`}
         </h1>
         {quiz.scenario && (
-          <p className="mb-6 whitespace-pre-wrap text-sky-700 dark:text-sky-300">
+          <p className="mb-6 whitespace-pre-wrap text-sky-700 dark:text-sky-300" style={{ fontFamily: "var(--font-ubuntu)" }}>
             {quiz.scenario}
           </p>
         )}
@@ -246,7 +246,7 @@ if (showFinal) {
     </div>
     {quiz.scenario && (
       <div className="px-4 py-2">
-        <p className="text-sm text-sky-800 dark:text-sky-900">
+        <p className="text-sm text-sky-800 dark:text-sky-900" style={{ fontFamily: "var(--font-ubuntu)" }}>
           <span className="font-semibold">Subject: </span>{quiz.scenario}
         </p>
       </div>
@@ -264,7 +264,7 @@ if (showFinal) {
         )}
 
         <div className="mb-8">
-          <h2 className="mb-4 text-lg font-semibold text-sky-900 dark:text-sky-900">
+          <h2 className="mb-4 text-lg font-semibold text-sky-900 dark:text-sky-900" style={{ fontFamily: "var(--font-ubuntu)" }}>
             Select all that apply (red flags):
           </h2>
           <div className="flex flex-wrap gap-3">
@@ -307,7 +307,8 @@ if (showFinal) {
             onClick={handleSubmit}
             disabled={selected.size === 0}
             className="rounded-lg bg-teal-600 px-6 py-3 font-semibold text-white shadow-md hover:bg-teal-700 disabled:opacity-100 dark:bg-teal-500 dark:hover:bg-teal-600"
-          >
+            style={{ fontFamily: "var(--font-ubuntu)" }}
+>
             Submit
           </button>
         ) : result ? (
