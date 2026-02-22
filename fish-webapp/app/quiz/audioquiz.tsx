@@ -92,16 +92,16 @@ export default function AudioQuizPage() {
     const totalCorrect = allScores.reduce((sum, s) => sum + s.correct, 0);
     const totalPossible = allScores.reduce((sum, s) => sum + s.total, 0);
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-sky-50 p-8 dark:bg-slate-900">
-        <h1 className="text-3xl font-bold text-sky-900 dark:text-sky-50">Quiz Complete!</h1>
-        <p className="text-xl text-sky-700 dark:text-sky-300">
+      <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-sky-50 p-8 dark:bg-slate-500">
+        <h1 className="text-3xl font-bold text-sky-900 dark:text-sky-500 " style={{ fontFamily: "var(--font-ubuntu)" }}>Quiz Complete!</h1>
+        <p className="text-xl text-sky-700 dark:text-sky-800">
           Total Score: <strong>{totalCorrect}</strong> / <strong>{totalPossible}</strong>
         </p>
         <div className="w-full max-w-md space-y-2">
           {allScores.map((s, i) => (
-            <div key={i} className="flex justify-between rounded-lg bg-white px-4 py-2 shadow dark:bg-slate-800">
+            <div key={i} className="flex justify-between rounded-lg bg-white px-4 py-2 shadow dark:bg-slate-700">
               <span className="text-sky-700 dark:text-sky-300">{s.title}</span>
-              <span className={s.correct === s.total ? 'font-semibold text-teal-600' : 'font-semibold text-red-500'}>
+              <span className={s.correct === s.total ? 'font-semibold text-teal-600 dark:text-sky-900' : 'font-semibold text-red-500'}>
                 {s.correct} / {s.total}
               </span>
             </div>
@@ -144,7 +144,7 @@ export default function AudioQuizPage() {
     .filter(s => s.length > 0);
 
   return (
-    <div className="min-h-screen bg-sky-50 dark:bg-slate-900">
+    <div className="min-h-screen bg-sky-50 dark:bg-slate-400">
       <div className="mx-auto max-w-2xl px-6 py-12">
 
         {/* Header with arrows */}
@@ -165,17 +165,15 @@ export default function AudioQuizPage() {
           </div>
         </div>
 
-        <h1 className="mb-2 text-2xl font-bold text-sky-900 dark:text-sky-50">Audio Quiz</h1>
-        <p className="mb-6 text-sky-700 dark:text-sky-300">
+        <h1 className="mb-2 text-2xl font-bold text-sky-900 dark:text-sky-900" style={{ fontFamily: "var(--font-ubuntu)" }}>Audio Quiz</h1>
+        <p className="mb-6 text-sky-900 dark:text-sky-900">
           Listen to the call, then click on sentences that are scam indicators.
         </p>
 
         {/* Audio player */}
         {current.audioUrl && (
-          <div className="mb-6 rounded-xl bg-gradient-to-r from-sky-900 to-slate-800 p-4 shadow-lg">
+          <div className="mb-6 rounded-xl bg-sky-900 shadow-lg">
             <div className="mb-3 flex items-center gap-3">
-              <span className="text-2xl">🎧</span>
-              <p className="text-sm font-semibold text-sky-200">Listen to the scam call</p>
             </div>
             <audio controls className="w-full rounded-lg accent-teal-400" src={current.audioUrl}>
               Your browser does not support audio.
@@ -184,7 +182,7 @@ export default function AudioQuizPage() {
         )}
 
         <h2 className="mb-4 text-lg font-semibold text-sky-900 dark:text-sky-50">{current.title}</h2>
-        <p className="mb-3 text-sm text-sky-600 dark:text-sky-400">Click on sentences that indicate a scam:</p>
+        <p className="mb-3 text-sm text-sky-800 dark:text-sky-900" style={{ fontFamily: "var(--font-ubuntu)" }}>Click on sentences that indicate a scam:</p>
 
         {/* Clickable sentences */}
         <div className="mb-8 flex flex-col gap-2">
@@ -239,21 +237,25 @@ export default function AudioQuizPage() {
           <button
             onClick={handleSubmit}
             disabled={selected.size === 0}
-            className="rounded-lg bg-teal-600 px-6 py-3 font-semibold text-white shadow-md hover:bg-teal-700 disabled:opacity-50"
+            className="rounded-lg bg-teal-600 px-6 py-3 font-semibold text-white shadow-md hover:bg-teal-900 disabled:opacity-100"
+            style={{ fontFamily: "var(--font-ubuntu)" }}
           >
             Submit Answers
           </button>
         ) : (
           <div className="space-y-4">
             {score && (
-              <p className={`text-lg font-semibold ${score.correct === score.total ? 'text-teal-600' : 'text-sky-800 dark:text-sky-200'}`}>
+              <p className={`text-lg font-semibold ${score.correct === score.total ? 'text-teal-600' : 'text-sky-800 dark:text-sky-800'}`}>
                 {score.correct === score.total
                   ? '🎉 Perfect!'
                   : `You got ${score.correct} of ${score.total} indicators.`}
               </p>
             )}
             <button onClick={goNext}
-              className="rounded-lg bg-teal-600 px-6 py-3 font-semibold text-white hover:bg-teal-700">
+              className="rounded-lg bg-teal-600 px-6 py-3 font-semibold text-white hover:bg-teal-700 "
+              style={{ fontFamily: "var(--font-ubuntu)" }}
+            >
+              
               {currentIndex < quizzes.length - 1 ? 'Next Question →' : 'See Final Score'}
             </button>
           </div>

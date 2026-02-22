@@ -124,18 +124,18 @@ if (showFinal) {
   const totalScore = Object.values(levelScoresCache).reduce((sum, s) => sum + s.score, 0);
   const totalPossible = Object.values(levelScoresCache).reduce((sum, s) => sum + s.total, 0);
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-sky-50 p-8 dark:bg-slate-900">
-      <h1 className="text-3xl font-bold text-sky-900 dark:text-sky-50">Quiz Complete!</h1>
-      <p className="text-xl text-sky-700 dark:text-sky-300">
+    <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-slate-100">
+      <h1 className="text-3xl font-bold text-sky-900 dark:text-black" style={{ fontFamily: "var(--font-ubuntu)" }}>Quiz Complete!</h1>
+      <p className="text-xl text-sky-700 dark:text-sky-900">
         Total Score: <strong>{totalScore}</strong> / <strong>{totalPossible}</strong>
       </p>
       <div className="w-full max-w-sm space-y-2">
         {[1,2,3,4,5].map((l) => {
           const s = levelScoresCache[l];
           return (
-            <div key={l} className="flex justify-between rounded-lg bg-white px-4 py-2 shadow dark:bg-slate-800">
-              <span className="text-sky-700 dark:text-sky-300">Level {l}</span>
-              <span className={s ? (s.score === s.total ? 'text-teal-600' : 'text-red-500') : 'text-sky-400'}>
+            <div key={l} className="flex justify-between rounded-lg bg-blue-800 px-4 py-2 shadow dark:bg-slate-600">
+              <span className="text-sky-900 dark:text-sky-600" style={{ fontFamily: "var(--font-ubuntu)" }}>Level {l}</span>
+              <span className={s ? (s.score === s.total ? 'text-teal-900 dark:text-teal-500' : 'text-red-800 dark:text-red-500') : 'text-sky-800 dark:text-sky-400'}>
                 {s ? `${s.score} / ${s.total}` : 'Skipped'}
               </span>
             </div>
@@ -146,7 +146,7 @@ if (showFinal) {
         className="rounded-lg bg-teal-600 px-6 py-3 font-semibold text-white hover:bg-teal-700">
         Try Again
       </button>
-      <Link href="/" className="text-sky-600 hover:underline dark:text-sky-400">Home</Link>
+      <Link href="/" className="text-sky-600 hover:underline dark:text-sky-900">Home</Link>
     </div>
   );
 }
@@ -200,7 +200,7 @@ if (showFinal) {
   const correctSet = new Set(quiz.flags || []);
 
   return (
-    <div className="min-h-screen bg-sky-50 dark:bg-slate-900">
+    <div className="min-h-screen bg-sky-50 dark:bg-slate-600">
       <div className="mx-auto max-w-2xl px-6 py-12">
         <div className="mb-6 flex items-center justify-between">
           <Link href="/" className="text-sky-600 hover:text-sky-800 dark:text-sky-400 dark:hover:text-sky-200">
@@ -224,7 +224,7 @@ if (showFinal) {
 
         </div>
 
-        <h1 className="mb-2 text-2xl font-bold text-sky-900 dark:text-sky-50">
+        <h1 className="mb-2 text-2xl font-bold text-sky-900 dark:text-sky-900">
           {quiz.title || `Quiz Level ${quiz.level ?? level}`}
         </h1>
         {quiz.scenario && (
@@ -238,15 +238,15 @@ if (showFinal) {
           </div>
         )}
         {(quiz.fromName||quiz.fromEmail) && (
-         <div className="mb-6 rounded-xl border border-sky-200 bg-sky-100 dark:border-sky-700 dark:bg-slate-700">
-    <div className="border-b border-sky-200 px-4 py-2 dark:border-sky-700">
-      <p className="text-sm text-sky-800 dark:text-sky-200">
+         <div className="mb-6 rounded-xl border border-sky-200 bg-sky-100 dark:border-sky-700 dark:bg-slate-800">
+    <div className="border-b border-sky-200 px-4 py-2 dark:border-sky-900">
+      <p className="text-sm text-sky-800 dark:text-sky-50">
         <span className="font-semibold">From: </span>{quiz.fromName} &lt;{quiz.fromEmail}&gt;
       </p>
     </div>
     {quiz.scenario && (
       <div className="px-4 py-2">
-        <p className="text-sm text-sky-800 dark:text-sky-200">
+        <p className="text-sm text-sky-800 dark:text-sky-900">
           <span className="font-semibold">Subject: </span>{quiz.scenario}
         </p>
       </div>
@@ -264,7 +264,7 @@ if (showFinal) {
         )}
 
         <div className="mb-8">
-          <h2 className="mb-4 text-lg font-semibold text-sky-900 dark:text-sky-50">
+          <h2 className="mb-4 text-lg font-semibold text-sky-900 dark:text-sky-900">
             Select all that apply (red flags):
           </h2>
           <div className="flex flex-wrap gap-3">
@@ -306,29 +306,26 @@ if (showFinal) {
           <button
             onClick={handleSubmit}
             disabled={selected.size === 0}
-            className="rounded-lg bg-teal-600 px-6 py-3 font-semibold text-white shadow-md hover:bg-teal-700 disabled:opacity-50 dark:bg-teal-500 dark:hover:bg-teal-600"
+            className="rounded-lg bg-teal-600 px-6 py-3 font-semibold text-white shadow-md hover:bg-teal-700 disabled:opacity-100 dark:bg-teal-500 dark:hover:bg-teal-600"
           >
             Submit
           </button>
         ) : result ? (
           <div className="space-y-4">
-            <p className="text-lg text-sky-800 dark:text-sky-200">
+            <p className="text-lg text-sky-800 dark:text-sky-900">
               Score: <strong>{result.score}</strong> / <strong>{result.total}</strong> correct
             </p>
             <div className="flex gap-3">
-                <button onClick={loadQuiz}
-                  className="rounded-lg border border-sky-300 px-4 py-2 hover:bg-sky-100 dark:border-sky-600">
-                  Try Again
-                </button>
+                
                 <button onClick={goNext}
-                  className="rounded-lg bg-teal-600 px-6 py-3 font-semibold text-white hover:bg-teal-700">
+                  className="rounded-lg bg-teal-600 px-6 py-3 font-semibold text-white hover:bg-teal-700 dark:hover:bg-slate-800">
                   {level < 5 ? 'Next Level →' : 'See Final Score'}
                 </button>
               </div>
 
             <Link
               href="/"
-              className="ml-3 inline-block rounded-lg border border-sky-300 px-6 py-3 hover:bg-sky-100 dark:border-sky-600 dark:hover:bg-slate-800"
+              className="ml-3 inline-block rounded-lg bg-teal-600 border border-sky-900 px-6 py-3 dark:border-sky-600 hover:bg-teal-700 dark:hover:bg-slate-800"
             >
               Home
             </Link>
